@@ -1,15 +1,12 @@
 
 <?php 
 /**
- * Plugin Name: Premier plugin
- * Author: Michael Ali Soeu  
- * Description: Une premiere extention pour comprendre
- * Version: 1.0.0
- * Author URL: https://github.com/mikaiwnl/2024-4w4-gr1
- * 
- * 
- * 
- */ 
+ * Plugin Name: premier plugin
+ * Author: Michael Ali Soeu
+ * Description : Une première extension pour comprendre
+ * version: 1.0.0
+ * Plugin URI: https://github.com/mikaiwnl
+ */
 
 function enqueue_style_script(){
     $version_css = filemtime(plugin_dir_path( __FILE__ ) . "style.css");
@@ -34,7 +31,7 @@ wp_enqueue_script(  'em_plugin_carrousel_js',
         $html='
         <button class="bouton__ouvrir">Ouvrir Carousel</button>
         <div class="carrousel">
-            <a href="" class="carrousel__x">X</a>
+            <button href="" class="carrousel__x"> X </button>
             <figure class="carrousel__figure"></figure>
             <form action="" class="carrousel__form"></form>
         </div>
