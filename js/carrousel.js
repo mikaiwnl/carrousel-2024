@@ -1,5 +1,5 @@
 (function(){
-    console.log("Vive Javascript")
+    console.log("Vive Javascrip")
     let carrousel = document.querySelector('.carrousel')
     console.log("conteneur carrousel = " + carrousel.tagName)
     let bouton = document.querySelector('.bouton__ouvrir')
@@ -8,70 +8,106 @@
     console.log('carrousel__x' + carrousel__x.tagName)
     let galerie = document.querySelector('.galerie')
     console.log('galerie = ' + galerie.tagName)
-   
-   
+
+
     let carrousel__figure = document.querySelector('.carrousel__figure')
-    /* Création dynamique d'une image du carrousel */
-   
+
+
     /* récupère la première image de la galerie */
     // let galerie__img = galerie.querySelector('img')
-    /* por créer une collection d'images de la galerie */
+    /* pour créer une collection d'images de la galerie */
     let galerie__img = galerie.querySelectorAll('img')
     console.log( galerie__img)
     let index = 0
     for (const elm of galerie__img)
     {
-        creation_image_carrousel(index, elm)
+        creer_image_carrousel(index, elm)
         creer_radio_carrousel(index)
         index = index + 1
+
     }
-   
-    /*
-    Créer l'image du carrousel de la galerie
-    */
-   function creation_image_carrousel(index,elm){
-    console.log(elm.src)
-    let carrousel__img = document.createElement('img')
-    carrousel__img.src = elm.src
-    carrousel__img.classList.add('carrousel__img')
-    carrousel__img.dataset.index = index
-    carrousel__figure.appendChild(carrousel__img)
-   }
-   
-    /*
-    Créer d'un radio bouton du carrousel (le numéro)
-    */
-   function creer_radio_carrousel(index){
-    let carrousel__radio = document.createElement('input')
-   carrousel__img.children[index].style.opacity = 1 
-   
-   
-  }
-   
-   
-   
-   
-   
-   
-   
+
+/**
+ * Créer l'image du carrousel à partir de la galerie
+ * @param {*} index  le numéro de l'image
+ * @param  elm l'élément image de la galerie
+ */
+    function creer_image_carrousel(index,elm){
+        console.log(elm.src)
+        /* Création dynamique d'une image du carrousel */
+        let carrousel__img = document.createElement('img')
+        carrousel__img.src = elm.src
+        carrousel__img.classList.add('carrousel__img')
+        carrousel__img.dataset.index = index
+        carrousel__figure.appendChild(carrousel__img)
+    }
+
+    /**
+     * Création d'un radio bouton du carrousel
+     * @param {*} index  le numéro du radio
+     */
+    function creer_radio_carrousel(index){
+        let carrousel__radio = document.createElement('input')
+        // class
+        // index
+        // type
+        // name
+        // ajouter dans carrousel__form
+        // ajouter un écouteur qui permettra de changer l'opacité de l'image « index »
+                // carrousel__figure.children[index].style.opacity = 1
+    }
+
+
     /*
     console.log("première image de la galerie = " + galerie__img.src)
     carrousel__img.src = galerie__img.src
     console.log("première image du carrousel = " + carrousel__img.src)
     carrousel__figure.appendChild(carrousel__img)
     console.log(carrousel__figure)
-  */
-   
-   
-  /* écouteur pour ouvrir la boîte modale */
+*/
+
+
+
+
+
+
+
+/* écouteur pour ouvrir la boîte modale */
     bouton.addEventListener('mousedown', function(){
         carrousel.classList.add('carrousel--ouvrir') // ouvrir le carrousel
     })
-  /* Écouteur pour fermer la boîte modale */
+/* Écouteur pour fermer la boîte modale */
     carrousel__x.addEventListener('mousedown', function(){
+        
         carrousel.classList.remove('carrousel--ouvrir') // fermer le carrousel
+
+        console.log('fermer carrousel')
     })
-   
-   
-   
-  })();
+
+    function creer_radio_carrousel(index){
+        let carrousel__radio = document.createElement('input')
+        let carrousel__form = document.querySelector('.carrousel__form')
+        // class
+     carrousel__radio.classList.add('carrousel__radio')
+        //index
+        carrousel__radio.dataset.index = index
+        // type
+        carrousel__radio.type = 'radio'
+        // name
+        carrousel__radio.name = 'imageRadio'
+        // ajouter dans carrousel__form
+        carrousel__form.appendChild(carrousel__radio)
+
+        // ajouter un écouteur qui permettra de click 
+        carrousel__radio.addEventListener('click', function(){
+            let index = this.dataset.index
+            let carrousel__img = carrousel__figure.children;
+            for (const img of carrousel__img)
+            {
+                img.style.opacity = 0
+            }
+            carrousel__img[index].style.opacity = 1
+        })
+    }
+
+})()
