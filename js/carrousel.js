@@ -1,113 +1,71 @@
 (function(){
-    console.log("Vive Javascrip")
-    let carrousel = document.querySelector('.carrousel')
-    console.log("conteneur carrousel = " + carrousel.tagName)
-    let bouton = document.querySelector('.bouton__ouvrir')
-    console.log("bouton = " + bouton.tagName)
-    let carrousel__x = document.querySelector('.carrousel__x')
-    console.log('carrousel__x' + carrousel__x.tagName)
+    // console.log('début du carrousel')
+    let carrousel = document.querySelector(".carrousel")
+    // console.log("carrousel = " + carrousel.tagName)
+    let bouton = document.querySelector(".bouton__ouvrir")
+    // console.log("bouton = " + bouton.tagName)
+    let carrousel__x = document.querySelector(".carrousel__x")
+
     let galerie = document.querySelector('.galerie')
-    console.log('galerie = ' + galerie.tagName)
+    // let galerie__img = galerie.querySelector('img') // première image seulement
 
 
-    let carrousel__figure = document.querySelector('.carrousel__figure')
+let carrousel__figure = document.querySelector(".carrousel__figure")
+let galerie__img = galerie.querySelectorAll('img') // la collection des images de la galerie
 
+let index = 0
+for (const elm of galerie__img){
+    creer_image_carrousel(index, elm)
+    creer_radio_carrousel(index)
 
-    /* récupère la première image de la galerie */
-    // let galerie__img = galerie.querySelector('img')
-    /* pour créer une collection d'images de la galerie */
-    let galerie__img = galerie.querySelectorAll('img')
-    console.log( galerie__img)
-    let index = 0
-    for (const elm of galerie__img)
-    {
-        creer_image_carrousel(index, elm)
-        creer_radio_carrousel(index)
-        index = index + 1
+    index = index + 1
+}
 
-    }
 
 /**
- * Créer l'image du carrousel à partir de la galerie
- * @param {*} index  le numéro de l'image
- * @param  elm l'élément image de la galerie
+ * Créer une image du carrousel à partir d'une image de la galerie
+ * @param {*} index  numéro de l'image
+ * @param {*} elm image de la galerie
  */
-    function creer_image_carrousel(index,elm){
-        console.log(elm.src)
-        /* Création dynamique d'une image du carrousel */
-        let carrousel__img = document.createElement('img')
-        carrousel__img.src = elm.src
-        carrousel__img.classList.add('carrousel__img')
-        carrousel__img.dataset.index = index
-        carrousel__figure.appendChild(carrousel__img)
-    }
-
-    /**
-     * Création d'un radio bouton du carrousel
-     * @param {*} index  le numéro du radio
-     */
-    function creer_radio_carrousel(index){
-        let carrousel__radio = document.createElement('input')
-        // class
-        // index
-        // type
-        // name
-        // ajouter dans carrousel__form
-        // ajouter un écouteur qui permettra de changer l'opacité de l'image « index »
-                // carrousel__figure.children[index].style.opacity = 1
-    }
-
-
-    /*
-    console.log("première image de la galerie = " + galerie__img.src)
-    carrousel__img.src = galerie__img.src
-    console.log("première image du carrousel = " + carrousel__img.src)
+function creer_image_carrousel(index, elm){
+    let carrousel__img = document.createElement('img')
+    carrousel__img.classList.add('carrousel__img')
+    carrousel__img.dataset.index = index
+    console.log(elm.src)
+    carrousel__img.src = elm.src
+    console.log(carrousel__img.src)
     carrousel__figure.appendChild(carrousel__img)
-    console.log(carrousel__figure)
-*/
+}
+
+
+/**
+ * Créer les radio bouton de navigation dans le carrousel
+ * @param {*} index  numéro du radio bouton
+ */
+function creer_radio_carrousel(index){
+// créer input
+// modifier type = radio
+// name
+// index
+// ajouter le radio bouton au formulaire
+// écoute de l'événement « change »
+    // initialiser le style.opacity=0 pour l'ensemble des images
+    // initialise l'image selectionnée à style.opacity=1
+
+}
 
 
 
 
 
-
-
-/* écouteur pour ouvrir la boîte modale */
     bouton.addEventListener('mousedown', function(){
-        carrousel.classList.add('carrousel--ouvrir') // ouvrir le carrousel
+        console.log("bouton mousedown ")
+        carrousel.classList.add('carrousel--ouvrir')
     })
-/* Écouteur pour fermer la boîte modale */
+
     carrousel__x.addEventListener('mousedown', function(){
-        
-        carrousel.classList.remove('carrousel--ouvrir') // fermer le carrousel
-
-        console.log('fermer carrousel')
+        console.log("bouton mousedown ")
+        carrousel.classList.remove('carrousel--ouvrir')
     })
-
-    function creer_radio_carrousel(index){
-        let carrousel__radio = document.createElement('input')
-        let carrousel__form = document.querySelector('.carrousel__form')
-        // class
-     carrousel__radio.classList.add('carrousel__radio')
-        //index
-        carrousel__radio.dataset.index = index
-        // type
-        carrousel__radio.type = 'radio'
-        // name
-        carrousel__radio.name = 'imageRadio'
-        // ajouter dans carrousel__form
-        carrousel__form.appendChild(carrousel__radio)
-
-        // ajouter un écouteur qui permettra de click 
-        carrousel__radio.addEventListener('click', function(){
-            let index = this.dataset.index
-            let carrousel__img = carrousel__figure.children;
-            for (const img of carrousel__img)
-            {
-                img.style.opacity = 0
-            }
-            carrousel__img[index].style.opacity = 1
-        })
-    }
 
 })()
