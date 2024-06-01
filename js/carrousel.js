@@ -21,7 +21,6 @@ for (const elm of galerie__img){
     index = index + 1
 }
 
-
 /**
  * Créer une image du carrousel à partir d'une image de la galerie
  * @param {*} index  numéro de l'image
@@ -29,10 +28,10 @@ for (const elm of galerie__img){
  */
 function creer_image_carrousel(index, elm){
     let carrousel__img = document.createElement('img')
+    carrousel__img.src = elm.src
     carrousel__img.classList.add('carrousel__img')
     carrousel__img.dataset.index = index
     console.log(elm.src)
-    carrousel__img.src = elm.src
     console.log(carrousel__img.src)
     carrousel__figure.appendChild(carrousel__img)
 }
@@ -44,7 +43,23 @@ function creer_image_carrousel(index, elm){
  */
 function creer_radio_carrousel(index){
 // créer input
+let carrouselForm = document.querySelector(".carrousel__form")
+let input=document.createElement("input")
 // modifier type = radio
+input.classList.add("carrousel_Frm")
+input.dataset.index =index;
+input.type = "radio"
+input.name = "nom"
+carrouselForm.appendChild(input)
+input.addEventListener("click",function(){
+    let index = this.dataset.index
+    let carrousel_imgs = carrousel__figure.children
+    for(let img of carrousel_imgs){
+        img.style.opacity=0;
+    }
+    carrousel_imgs[index].style.opacity=1;
+})
+
 // name
 // index
 // ajouter le radio bouton au formulaire
@@ -53,10 +68,6 @@ function creer_radio_carrousel(index){
     // initialise l'image selectionnée à style.opacity=1
 
 }
-
-
-
-
 
     bouton.addEventListener('mousedown', function(){
         console.log("bouton mousedown ")
